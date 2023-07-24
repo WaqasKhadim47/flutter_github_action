@@ -18,12 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
+      - uses: gittools.gittools.setup-gitversion-task.gitversion/setup@0
         displayName: 'Setup GitVersion'
         inputs:
           versionSpec: 5.x
 
-      - task: gittools.gittools.execute-gitversion-task.gitversion/execute@0
+      - uses: gittools.gittools.execute-gitversion-task.gitversion/execute@0
         id: gitversion
         displayName: 'Evaluate Next Version'
         inputs:
