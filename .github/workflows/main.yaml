@@ -18,18 +18,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - task: gittools.gittools.setup-gitversion-task.gitversion/setup@0
+          displayName: 'Setup GitVersion'
+          inputs:
+            versionSpec: 5.x
 
-      - name: Install GitVersion
-        uses: gittools.gittools.setup-gitversion-task.gitversion/setup@0
-        with:
-          versionSpec: "5.3.x"
+      - task: gittools.gittools.execute-gitversion-task.gitversion/execute@0
+          id: gitversion
+          displayName: 'Evaluate Next Version'
+          inputs:
+             useConfigFile: true
+             configFilePath: 'GitVersion.yml'
 
-      - name: Use GitVersion
-        id: gitversion
-        uses: gittools.gittools.execute-gitversion-task.gitversion/execute@0
-        inputs:
-          useConfigFile: true
-          configFilePath: 'GitVersion.yml'
+      # - name: Install GitVersion
+      #   uses: gittools.gittools.setup-gitversion-task.gitversion/setup@0
+      #   with:
+      #     versionSpec: "5.3.x"
+
+      # - name: Use GitVersion
+      #   id: gitversion
+      #   uses: gittools.gittools.execute-gitversion-task.gitversion/execute@0
+      #   inputs:
+      #     useConfigFile: true
+      #     configFilePath: 'GitVersion.yml'
         
 
 
