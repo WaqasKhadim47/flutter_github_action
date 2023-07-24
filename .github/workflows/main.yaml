@@ -23,9 +23,10 @@ jobs:
 
       - name: Use GitVersion
         uses: gittools/actions/gitversion/execute@v0
-        id: gitversion
+        # id: gitversion
         with:
           useConfigFile: true
+          additionalArguments: '/showConfig'
           
 
       # - name: Install GitVersion
