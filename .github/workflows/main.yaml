@@ -131,11 +131,29 @@ jobs:
   #       status: completed
 
   deploy:
-    name: Push to Releases
-    uses: ncipollo/release-action@v1
-    with:
-      artifacts: "build/app/outputs/bundle/release/app-release.aab"
-      tag: v1.0.${{ github.run_number }}
-      token: ${{ secrets.TOKEN }}
+    name: Deploy Android Build
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Get Android Build from artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: android-release
+    - name: Release Build to internal track
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "build/app/outputs/bundle/release/app-release.aab"
+        tag: v1.0.${{ github.run_number }}
+        token: ${{ secrets.TOKEN }}
+        status: completed
+
+  # deploy:
+  #   name: Push to Releases
+  #   uses: ncipollo/release-action@v1
+  #   with:
+  #     artifacts: "build/app/outputs/bundle/release/app-release.aab"
+  #     tag: v1.0.${{ github.run_number }}
+  #     token: ${{ secrets.TOKEN }}
 
           #,build/ios/iphoneos/app.ipa
