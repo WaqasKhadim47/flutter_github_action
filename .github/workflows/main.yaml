@@ -20,13 +20,13 @@ jobs:
 
       - name: Install GitVersion
         uses: gittools.gittools.setup-gitversion-task.gitversion/setup@0
-        inputs:
+        with:
           versionSpec: 5.x
 
       - name: Use GitVersion
         uses: gittools.gittools.execute-gitversion-task.gitversion/execute@0
         id: gitversion
-        inputs:
+        with:
           useConfigFile: true
           configFilePath: 'GitVersion.yml'
 
