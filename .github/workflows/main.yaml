@@ -27,6 +27,7 @@ jobs:
           versionSpec: '5.x'
 
       - name: Use GitVersion
+        id: gitversion
         uses: gittools/actions/gitversion/execute@v0.9.6
           
           
@@ -129,7 +130,7 @@ jobs:
   #       track: alpha
   #       status: completed
 
-
+  deploy:
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
