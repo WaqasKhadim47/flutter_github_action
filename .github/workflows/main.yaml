@@ -17,24 +17,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v0.9.7
+        uses: gittools.gittools.setup-gitversion-task.gitversion/setup@0
         with:
           versionSpec: "5.3.x"
 
-      # - name: Use GitVersion
-      #   id: gitversion
-      #   uses: gittools/actions/gitversion/execute@v0.9.7
-      #   with:
-      #     versionSpec: "5.3.x"
-      - task: UseDotNet@2
+      - name: Use GitVersion
+        id: gitversion
+        uses: gittools.gittools.execute-gitversion-task.gitversion/execute@0
         inputs:
-        version: '3.x'
-
-      - task: UseGitVersion@5
-        name: UseGitVersion
-        inputs:
-        versionSpec: '5.x'
+              useConfigFile: true
+              configFilePath: 'GitVersion.yml'
+        
 
 
       - name: Create version.txt with nuGetVersion
