@@ -28,8 +28,8 @@ jobs:
         id: gitversion
         uses: gittools.gittools.execute-gitversion-task.gitversion/execute@0
         inputs:
-              useConfigFile: true
-              configFilePath: 'GitVersion.yml'
+          useConfigFile: true
+          configFilePath: 'GitVersion.yml'
         
 
 
