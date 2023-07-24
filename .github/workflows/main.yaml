@@ -22,12 +22,12 @@ jobs:
           fetch-depth: 0
 
       - name: Install GitVersion
-        uses: gitversion/setup@v0
+        uses: gitversion/setup@0
         with:
           versionSpec: '5.x'
 
       - name: Use GitVersion
-        uses: gitversion/execute@v0
+        uses: gitversion/execute@0
         id: gitversion
         with:
           useConfigFile: true
