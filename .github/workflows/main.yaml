@@ -140,10 +140,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: android-release
-    - name: Release Build to internal track
+    - name: Release Build
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "build/app/outputs/bundle/release/app-release.aab"
+        artifacts: app-release.aab
         tag: v1.0.${{ github.run_number }}
         token: ${{ secrets.TOKEN }}
         status: completed
