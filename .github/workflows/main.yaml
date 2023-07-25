@@ -215,8 +215,8 @@ jobs:
         run: |
           flutter build ipa \
             --release \
-            # --flavor ${{ inputs.flavor }} \
-            # --target lib/main${{ inputs.flavor }}.dart \
+            --flavor ${{ inputs.flavor }} \
+            --target lib/main${{ inputs.flavor }}.dart \
             --export-options-plist=${{ github.workspace }}/ios/Runner/ExportOptions.plist
           
       # - name: 🍏🚀 Deploy to App Store (Testflight)
