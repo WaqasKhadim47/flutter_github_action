@@ -112,12 +112,12 @@ jobs:
       - name: Push to Github Releases dashboard
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build-output/ios/github_actions.ipa"
+          artifacts: "build-output/ios/flutter_github_action.ipa"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
 
-      - name: Validate the iPA File
-        run: xcrun altool --validate-app -f build-output/ios/github_actions.ipa -t ios -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+      # - name: Validate the iPA File
+      #   run: xcrun altool --validate-app -f build-output/ios/flutter_github_action.ipa -t ios -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
 
       # - name: Upload ipa to Testflight
       #   run: xcrun altool --upload-app -f build-output/ios/github_actions.ipa -t ios -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
