@@ -11,7 +11,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.invozone.flutterGithubAction</key>
-		<string>Github Action Provisioning Adhoc</string>
+		<string>Github Action Provisioning Profile</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>
