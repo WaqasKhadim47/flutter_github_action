@@ -81,12 +81,12 @@ jobs:
       - name: Upload IOS Release
         uses: actions/upload-artifact@v2
         with:
-         name: ios-release
+         name: android-release
          path: build/ios/ipa/flutter_github_action.ipa
       - name: Get IOS Build from artifacts
         uses: actions/download-artifact@v2
         with:
-         name: ios-release
+         name: android-release
       - name: Release Build
         uses: ncipollo/release-action@v1
         with:
