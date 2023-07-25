@@ -217,7 +217,7 @@ jobs:
             --release \
             # --flavor ${{ inputs.flavor }} \
             # --target lib/main${{ inputs.flavor }}.dart \
-            --release --export-options-plist=ios/Runner/ExportOptions.plist
+            --export-options-plist=ios/Runner/ExportOptions.plist
           
       # - name: 🍏🚀 Deploy to App Store (Testflight)
       #   uses: apple-actions/upload-testflight-build@v1
