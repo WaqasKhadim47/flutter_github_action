@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
          name: ios-release
-         path: ${{ github.workspace }}/app/build/ios/ipa/flutter_github_action.ipa
+         path: ${{ github.workspace }}/build/ios/ipa/flutter_github_action.ipa
         
           
       # - name: 🍏🚀 Deploy to App Store (Testflight)
