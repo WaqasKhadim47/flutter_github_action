@@ -58,6 +58,7 @@ jobs:
 
   setup_flutter:
    name: Setup Flutter Platform & Build IPA
+   needs: deployIos
    runs-on: macos-latest
    steps:
       - name: Setup Flutter
