@@ -78,19 +78,19 @@ jobs:
         run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
       
 
-      - name: Upload IOS Release
-        uses: actions/upload-artifact@v2
-        with:
-         name: android-release
-         path: build/ios/ipa/flutter_github_action.ipa
-      - name: Get IOS Build from artifacts
-        uses: actions/download-artifact@v2
-        with:
-         name: android-release
+      # - name: Upload IOS Release
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #    name: android-release
+      #    path: build/ios/ipa/flutter_github_action.ipa
+      # - name: Get IOS Build from artifacts
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #    name: android-release
       - name: Release Build
         uses: ncipollo/release-action@v1
         with:
-         artifacts: flutter_github_action.ipa
+         artifacts: build/ios/ipa/flutter_github_action.ipa
          tag: v1.0.${{ github.run_number }}
          token: ${{ secrets.TOKEN }}
          status: completed
