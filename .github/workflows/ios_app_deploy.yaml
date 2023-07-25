@@ -14,7 +14,7 @@ name: "Build & Release IOS"
 jobs:
 
   deployIos:
-    name: Build & deploy iOS release
+    name: Build Setup IOS
     runs-on: macos-latest
     
     steps:
@@ -61,27 +61,27 @@ jobs:
    needs: deployIos
    runs-on: macos-latest
    steps:
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: "3.7.8"
-          channel: 'stable'
-          cache: true
-        id: flutter
-      - name: Flutter pub get
-        run: flutter pub get
+     - name: Setup Flutter
+       uses: subosito/flutter-action@v2
+       with:
+         flutter-version: "3.7.8"
+         channel: 'stable'
+         cache: true
+       id: flutter
+     - name: Flutter pub get
+       run: flutter pub get
 
-      - name: Flutter run test
-        run: flutter test
+     - name: Flutter run test
+       run: flutter test
       
-      - name: Create iOS appbundle release
-        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+     - name: Create iOS appbundle release
+       run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
 
-      - name: Upload IOS Release
-        uses: actions/upload-artifact@v2
-        with:
-          name: ios-release
-          path: ${{ github.workspace }}/app/build/ios/ipa/flutter_github_action.ipa
+     - name: Upload IOS Release
+       uses: actions/upload-artifact@v2
+       with:
+         name: ios-release
+         path: ${{ github.workspace }}/app/build/ios/ipa/flutter_github_action.ipa
         
           
       # - name: 🍏🚀 Deploy to App Store (Testflight)
