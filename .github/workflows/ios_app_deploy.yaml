@@ -60,17 +60,17 @@ jobs:
    name: Setup Flutter Platform & Build IPA
    runs-on: macos-latest
    steps:
-     - name: Setup Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.7.8"
           channel: 'stable'
           cache: true
         id: flutter
-     - name: Flutter pub get
+      - name: Flutter pub get
         run: flutter pub get
 
-     - name: Flutter run test
+      - name: Flutter run test
         run: flutter test
       
       - name: Create iOS appbundle release
@@ -91,20 +91,20 @@ jobs:
       #     api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
       #     api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
 
- deploy:
-  name: Deploy IOS Build
-  needs: build
-  runs-on: macos-latest
-  steps:
-    - uses: actions/checkout@v1
-    - name: Get IOS Build from artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: ios-release
-    - name: Release Build
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: flutter_github_action.ipa
-        tag: v1.0.${{ github.run_number }}
-        token: ${{ secrets.TOKEN }}
-        status: completed
+  deploy:
+   name: Deploy IOS Build
+   needs: build
+   runs-on: macos-latest
+   steps:
+      - uses: actions/checkout@v1
+      - name: Get IOS Build from artifacts
+        uses: actions/download-artifact@v2
+        with:
+         name: ios-release
+      - name: Release Build
+        uses: ncipollo/release-action@v1
+        with:
+         artifacts: flutter_github_action.ipa
+         tag: v1.0.${{ github.run_number }}
+         token: ${{ secrets.TOKEN }}
+         status: completed
