@@ -205,10 +205,12 @@ jobs:
           channel: 'stable'
           cache: true
         id: flutter
-      - name: ⚙️ Setup Melos
-        uses: bluefireteam/melos-action@v2
-      - name: ⚙️ Install dependencies for all packages
-        run: melos build:pub_get:all
+      - name: Flutter pub get
+        run: flutter pub get
+      # - name: ⚙️ Setup Melos
+      #   uses: bluefireteam/melos-action@v2
+      # - name: ⚙️ Install dependencies for all packages
+      #   run: melos build:pub_get:all
       - name: 🍏📦 Create iOS appbundle release
         run: |
           pushd app/
