@@ -56,30 +56,30 @@ jobs:
           sed -Ei "" "s/^version: (.*)/version: ${{ inputs.new-pubspec-version }}/" pubspec.yaml
 
 
-  setup_flutter:
-   name: Setup Flutter Platform & Build IPA
-   needs: deployIos
-   runs-on: macos-latest
-   steps:
-     - name: Setup Flutter
-       uses: subosito/flutter-action@v2
-       with:
+  # setup_flutter:
+  #  name: Setup Flutter Platform & Build IPA
+  #  needs: deployIos
+  #  runs-on: macos-latest
+  #  steps:
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
          flutter-version: "3.7.8"
          channel: 'stable'
          cache: true
-       id: flutter
-     - name: Flutter pub get
-       run: flutter pub get
+        id: flutter
+      - name: Flutter pub get
+        run: flutter pub get
 
-     - name: Flutter run test
-       run: flutter test
+      - name: Flutter run test
+        run: flutter test
       
-     - name: Create iOS appbundle release
-       run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
+      - name: Create iOS appbundle release
+        run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
 
-     - name: Upload IOS Release
-       uses: actions/upload-artifact@v2
-       with:
+      - name: Upload IOS Release
+        uses: actions/upload-artifact@v2
+        with:
          name: ios-release
          path: ${{ github.workspace }}/app/build/ios/ipa/flutter_github_action.ipa
         
@@ -92,11 +92,11 @@ jobs:
       #     api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
       #     api-private-key: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
 
-  deploy:
-   name: Deploy IOS Build
-   needs: setup_flutter
-   runs-on: macos-latest
-   steps:
+  # deploy:
+  #  name: Deploy IOS Build
+  #  needs: setup_flutter
+  #  runs-on: macos-latest
+  #  steps:
       - uses: actions/checkout@v1
       - name: Get IOS Build from artifacts
         uses: actions/download-artifact@v2
