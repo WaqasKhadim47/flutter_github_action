@@ -62,23 +62,30 @@ jobs:
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
           <dict>
-            <key>provisioningProfiles</key>
-            <dict>
-              <key>com.mi.flutter</key>
-              <string>MI Flutter Demo</string>
-            </dict>
-            <key>CFBundlePackageType</key>
-          	<string>APPL</string>
-            <key>teamID</key>
-            <string>722XXXXXXX</string>
-            <key>signingStyle</key>
-            <string>automatic</string>
-            <key>compileBitcode</key>
-            <true/>
-            <key>method</key>
-            <string>app-store</string>
+          <key>destination</key>
+          <string>export</string>
+          <key>manageAppVersionAndBuildNumber</key>
+          <true/>
+          <key>method</key>
+          <string>app-store</string>
+          <key>provisioningProfiles</key>
+          <dict>
+            <key>com.invozone.flutterGithubAction</key>
+            <string>Github Action Provisioning Profile</string>
+          </dict>
+          <key>signingCertificate</key>
+          <string>Apple Distribution</string>
+          <key>signingStyle</key>
+          <string>manual</string>
+          <key>stripSwiftSymbols</key>
+          <true/>
+          <key>teamID</key>
+          <string>2ACH4UKQKX</string>
+          <key>uploadSymbols</key>
+          <true/>
           </dict>
           </plist>
+
           EOF
       - name: check >> ExportOptions.plist is present at ios
         run: cd ios && ls
