@@ -77,11 +77,18 @@ jobs:
       - name: Create iOS appbundle release
         run: flutter build ipa --release --export-options-plist=ios/Runner/ExportOptions.plist
 
-      - name: Upload IOS Release
-        uses: actions/upload-artifact@v2
+      # - name: Upload IOS Release
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #    name: ios-release
+      #    path: ${{ github.workspace }}/build/ios/ipa/flutter_github_action.ipa
+      - name: Release Build
+        uses: ncipollo/release-action@v1
         with:
-         name: ios-release
-         path: ${{ github.workspace }}/build/ios/ipa/flutter_github_action.ipa
+         artifacts: ${{ github.workspace }}/build/ios/ipa/flutter_github_action.ipa
+         tag: v1.0.${{ github.run_number }}
+         token: ${{ secrets.TOKEN }}
+         status: completed
         
           
       # - name: 🍏🚀 Deploy to App Store (Testflight)
@@ -97,15 +104,15 @@ jobs:
   #  needs: setup_flutter
   #  runs-on: macos-latest
   #  steps:
-      - uses: actions/checkout@v1
-      - name: Get IOS Build from artifacts
-        uses: actions/download-artifact@v2
-        with:
-         name: ios-release
-      - name: Release Build
-        uses: ncipollo/release-action@v1
-        with:
-         artifacts: flutter_github_action.ipa
-         tag: v1.0.${{ github.run_number }}
-         token: ${{ secrets.TOKEN }}
-         status: completed
+      # - uses: actions/checkout@v1
+      # - name: Get IOS Build from artifacts
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #    name: ios-release
+      # - name: Release Build
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #    artifacts: flutter_github_action.ipa
+      #    tag: v1.0.${{ github.run_number }}
+      #    token: ${{ secrets.TOKEN }}
+      #    status: completed
